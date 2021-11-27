@@ -18,11 +18,7 @@ public class baekjoon8958 {
             testCaseResult[i] = gradeTestCase(TestCase);
         }
         scanner.close();
-
-        for (int result : testCaseResult){
-            System.out.println(result);
-        }
-
+        printResult(testCaseResult);
     }
     public static int gradeTestCase(String[] TestCase) {
         int score = ZERO, testCaseTotalScore = ZERO;
@@ -39,6 +35,12 @@ public class baekjoon8958 {
             }
         }
         return testCaseTotalScore;
+    }
+
+    public void printResult(int[] testCaseResult) {
+        for (int result : testCaseResult){
+            System.out.println(result);
+        }
     }
 
 }
