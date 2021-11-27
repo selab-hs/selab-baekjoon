@@ -27,16 +27,8 @@ public class baekjoon8958 {
     public static int gradeTestCase(String[] TestCase) {
         int score = ZERO, testCaseTotalScore = ZERO;
         for (String answer : TestCase){
-            switch (answer) {
-                case CORRECT: {
-                    score++;
-                    testCaseTotalScore += score;
-                    break;
-                }
-                case WRONG: {
-                    score = ZERO;
-                }
-            }
+            score += answer.equals(CORRECT) ? 1 : -score;
+            testCaseTotalScore += score;
         }
         return testCaseTotalScore;
     }
