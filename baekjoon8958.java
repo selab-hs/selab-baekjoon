@@ -1,12 +1,10 @@
-package SeLab.Solution_2021_11_15;
-
 import java.util.Scanner;
 
 public class baekjoon8958 {
     public static final int ZERO = 0;
+    public static final int ONE = 1;
     public static final String REGEX = "";
     public static final String CORRECT = "O";
-    public static final String WRONG = "X";
 
     public static void main(String[] args) {
 
@@ -20,20 +18,19 @@ public class baekjoon8958 {
 
     public static void saveTestCaseResult(int testCaseNum, int[] testCaseResult, String[] testCase) {
         for (int i = ZERO; i < testCaseNum; i++){
-            testCaseResult[i] = gradeTestCase(testCase);
+            testCaseResult[i] = gradeTestCase(testCase, ZERO, ZERO);
         }
     }
 
-    public static int gradeTestCase(String[] TestCase) {
-        int score = ZERO, testCaseTotalScore = ZERO;
+    public static int gradeTestCase(String[] TestCase, int score, int testCaseTotalScore) {
         for (String answer : TestCase){
-            score += answer.equals(CORRECT) ? 1 : -score;
+            score += answer.equals(CORRECT) ? ONE : -score;
             testCaseTotalScore += score;
         }
         return testCaseTotalScore;
     }
 
-    public void printResult(int[] testCaseResult) {
+    public static void printResult(int[] testCaseResult) {
         for (int result : testCaseResult){
             System.out.println(result);
         }
