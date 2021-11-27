@@ -8,6 +8,22 @@ public class baekjoon8958 {
     public static final String CORRECT = "O";
     public static final String WRONG = "X";
 
+    public static void main(String[] args) {
+
+        Scanner scanner = new Scanner(System.in);
+        int testCaseNum = scanner.nextInt();
+        int[] testCaseResult = new int[testCaseNum];
+        for (int i = ZERO; i < testCaseNum; i++){
+            String[] TestCase = scanner.next().split(REGEX);
+            testCaseResult[i] = gradeTestCase(TestCase);
+        }
+        scanner.close();
+
+        for (int result : testCaseResult){
+            System.out.println(result);
+        }
+
+    }
     public static int gradeTestCase(String[] TestCase) {
         int score = ZERO, testCaseTotalScore = ZERO;
         for (String answer : TestCase){
@@ -25,21 +41,4 @@ public class baekjoon8958 {
         return testCaseTotalScore;
     }
 
-    public static void main(String[] args) {
-
-        Scanner scanner = new Scanner(System.in);
-        int testCaseNum = scanner.nextInt();
-        int[] testCaseResult = new int[testCaseNum];
-
-        for (int i = 0; i < testCaseNum; i++){
-            String[] TestCase = scanner.next().split(REGEX);
-            testCaseResult[i] = gradeTestCase(TestCase);
-        }
-        scanner.close();
-
-        for (int result : testCaseResult){
-            System.out.println(result);
-        }
-
-    }
 }
