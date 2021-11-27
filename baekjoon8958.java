@@ -13,13 +13,17 @@ public class baekjoon8958 {
         Scanner scanner = new Scanner(System.in);
         int testCaseNum = scanner.nextInt();
         int[] testCaseResult = new int[testCaseNum];
-        for (int i = ZERO; i < testCaseNum; i++){
-            String[] TestCase = scanner.next().split(REGEX);
-            testCaseResult[i] = gradeTestCase(TestCase);
-        }
+        saveTestCaseResult(testCaseNum, testCaseResult, scanner.next().split(REGEX));
         scanner.close();
         printResult(testCaseResult);
     }
+
+    public static void saveTestCaseResult(int testCaseNum, int[] testCaseResult, String[] testCase) {
+        for (int i = ZERO; i < testCaseNum; i++){
+            testCaseResult[i] = gradeTestCase(testCase);
+        }
+    }
+
     public static int gradeTestCase(String[] TestCase) {
         int score = ZERO, testCaseTotalScore = ZERO;
         for (String answer : TestCase){
