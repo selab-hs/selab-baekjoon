@@ -1,14 +1,13 @@
-import java.util.Arrays;
 import java.util.Scanner;
 
-public class baekjoon1110 {
+public class baekjoon1100 {
     public final static String[][] CHESSBOARD = new String[8][8];
     public final static int ZERO = 0;
     public final static int INIT_RANGE = 0;
     public final static int DIVISOR = 2;
     public final static int BOARDSIZE = 8;
     public final static String REGEX = "";
-    public final static PIECE  = "F";
+    public final static String PIECE  = "F";
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
