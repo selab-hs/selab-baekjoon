@@ -6,13 +6,16 @@ import java.util.Scanner;
  * */
 public class baekjoon1550 {
 
+  public final static int HEXADECIMAL = 16;
+
   public static void main(String[] args) {
     Scanner scanner = new Scanner(System.in);
     int outPutNumber = hexadecimalToDecimal(scanner.next());
+    scanner.close();
     System.out.println(outPutNumber);
   }
 
   public static int hexadecimalToDecimal(String inputNumber) {
-    return Integer.parseInt(inputNumber, 16);
+    return Integer.parseInt(inputNumber, HEXADECIMAL);
   }
 }
