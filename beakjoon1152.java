@@ -7,20 +7,19 @@ import java.util.Scanner;
 public class beakjoon1152 {
 
   public final static String REGEX = " ";
-  public final static int INIT_RANGE = 0;
   public final static int REMOVE_SPACES = 1;
 
   public static void main(String[] args) {
     Scanner scanner = new Scanner(System.in);
     String[] string = (scanner.nextLine()).split(REGEX);
     scanner.close();
-    System.out.println(countWord(string, INIT_RANGE));
+    System.out.println(countWord(string, string.length));
   }
 
   public static int countWord(String[] string, int numberOfCharacters) {
     for (String word : string) {
       if (word.isEmpty()) {
-        numberOfCharacters = string.length - REMOVE_SPACES;
+        numberOfCharacters -= REMOVE_SPACES;
       }
     }
     return numberOfCharacters;
