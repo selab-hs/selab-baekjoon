@@ -1,52 +1,34 @@
-import java.util.*;
-//https://www.acmicpc.net/problem/1005
+import java.util.Scanner;
+
 public class Main {
-    static Scanner scanner = new Scanner(System.in);
-    static Map<Integer, Building> buildingMap = new HashMap<>();
-
     public static void main(String[] args) {
-        //기본 세팅
         Scanner scanner = new Scanner(System.in);
-        int chance = Integer.parseInt(scanner.nextLine());
-        String[] cases = scanner.nextLine().split(" ");
-        String[] buildTime = scanner.nextLine().split(" ");
-        for (int i = 0; i < Integer.parseInt(cases[0]); i++) {
-            String[] requires = scanner.nextLine().split(" ");
-            buildingMap.get(Integer.parseInt(requires[1])).addRequires(Integer.parseInt(requires[0]));
+        int chance = scanner.nextInt();
+        int[][] cases = new int[chance][2];
+        for (int i = 0; i < chance; i++) {
+            cases[i][0] = scanner.nextInt();
+            cases[i][1] = scanner.nextInt();
         }
-        for (int i = 1; i < Integer.parseInt(cases[i]); i++) {
-            buildingMap.put(i, new Building(Integer.parseInt(buildTime[i])));
+
+        for (int i = 0; i < chance; i++) {
+            int floor = cases[i][0];
+            int roomNumber = cases[i][1];
+
+            int[][] dy = new int[floor + 1][roomNumber + 1];
+            for (int j = 1; j < roomNumber + 1; j++) {
+                dy[0][j] = j;
+            }
+
+            for (int aFloor = 1; aFloor <= floor; aFloor++) {
+                for (int aRoomNumber = 1; aRoomNumber <= roomNumber; aRoomNumber++) {
+                    int sum = 0;
+                    for (int sumIndex = 1;sumIndex<=aRoomNumber;sumIndex++){
+                        sum += dy[aFloor-1][sumIndex];
+                    }
+                    dy[aFloor][aRoomNumber] = sum;
+                }
+            }
+            System.out.println(dy[floor][roomNumber]);
         }
-        int finalBuild = Integer.parseInt(scanner.nextLine());
-
-        //로직
-        calculate(finalBuild);
-    }
-
-    private static void calculate(int finalBuild) {
-        int answer = buildingMap.get(1).getBuildTime();
-    }
-}
-
-class Building {
-    private final Set require = new HashSet();
-    private final int buildTime;
-
-    public Building(int buildTime) {
-        this.buildTime = buildTime;
-    }
-
-    public void addRequires(int number) {
-        if (!require.contains(number)) {
-            require.add(number);
-        }
-    }
-
-    public Set getRequire() {
-        return require;
-    }
-
-    public int getBuildTime() {
-        return buildTime;
     }
 }
