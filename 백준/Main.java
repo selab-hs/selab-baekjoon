@@ -1,34 +1,32 @@
 import java.util.Scanner;
-
+///https://www.acmicpc.net/board/view/118398
 public class Main {
+    static Scanner scanner = new Scanner(System.in);
+
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        int chance = scanner.nextInt();
-        int[][] cases = new int[chance][2];
-        for (int i = 0; i < chance; i++) {
-            cases[i][0] = scanner.nextInt();
-            cases[i][1] = scanner.nextInt();
+        int cases = scanner.nextInt();
+
+        int[] dy = new int[cases + 1];
+        dy[0] = -1;
+        dy[1] = -1;
+        dy[2] = -1;
+        dy[3] = 1;
+        dy[4] = -1;
+        dy[5] = 1;
+
+        for (int i = 6; i < cases + 1; i++) {
+            dy[i] = Math.min(vaildation(dy[i - 5] )+ 1, vaildation(dy[i - 3]) + 1);
         }
 
-        for (int i = 0; i < chance; i++) {
-            int floor = cases[i][0];
-            int roomNumber = cases[i][1];
 
-            int[][] dy = new int[floor + 1][roomNumber + 1];
-            for (int j = 1; j < roomNumber + 1; j++) {
-                dy[0][j] = j;
-            }
+        System.out.println(dy[cases]);
+    }
 
-            for (int aFloor = 1; aFloor <= floor; aFloor++) {
-                for (int aRoomNumber = 1; aRoomNumber <= roomNumber; aRoomNumber++) {
-                    int sum = 0;
-                    for (int sumIndex = 1;sumIndex<=aRoomNumber;sumIndex++){
-                        sum += dy[aFloor-1][sumIndex];
-                    }
-                    dy[aFloor][aRoomNumber] = sum;
-                }
-            }
-            System.out.println(dy[floor][roomNumber]);
+    private static int vaildation(int value) {
+        if (value == -1) {
+            return Integer.MAX_VALUE;
+
         }
+        return value;
     }
 }
